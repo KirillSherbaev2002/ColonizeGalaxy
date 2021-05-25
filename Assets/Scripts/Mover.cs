@@ -40,6 +40,16 @@ public class Mover : MonoBehaviour
 
     private void Update()
     {
+        #region MoveSpaceShip
+        if (EnginePower.value <= 0.24f)
+        {
+            GetComponent<Rigidbody>().AddForce(-transform.up * (-(EnginePower.value * 1.56f) - 0.26f) * 30);
+        }
+        if (EnginePower.value > 0.28f)
+        {
+            GetComponent<Rigidbody>().AddForce(-transform.up * ((EnginePower.value * 1.56f) - 0.26f) * 10);
+        }
+        #endregion
 
         Speed.text = (Ship.GetComponent<Rigidbody>().velocity.magnitude * 100).ToString("F0") + "KM/H";
 
@@ -120,7 +130,7 @@ public class Mover : MonoBehaviour
     {
         Ship.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
         Ship.transform.rotation = Quaternion.Euler(-90, 0, 0);
-        SetFlameToCorrectRotation();
+        StartCoroutine(SetFlameToCorrectRotation());
     }
     #endregion
     #endregion
@@ -130,12 +140,14 @@ public class Mover : MonoBehaviour
         foreach (GameObject fire in ToRight)
         {
             fire.SetActive(true);
-            fire.transform.rotation = Quaternion.Euler(-55f, -90f, 90f);
+            fire.transform.rotation = Quaternion.identity;
+            print(fire.transform.rotation);
         }
         foreach (GameObject fire in ToLeft)
         {
             fire.SetActive(true);
-            fire.transform.rotation = Quaternion.Euler(-55f, 90f, 90f);
+            fire.transform.rotation = Quaternion.identity;
+            print(fire.transform.rotation);
         }
         foreach (GameObject fire in UpBack)
         {
@@ -148,7 +160,7 @@ public class Mover : MonoBehaviour
             fire.transform.rotation = Quaternion.Euler(-90, 0, 0);
         }
         print("Done");
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(0.5f);
         print("Done2");
         stopAllFlames();
     }

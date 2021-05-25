@@ -38,11 +38,11 @@ public class DragRotate : MonoBehaviour
         #endregion
 
         #region ControllersHorizontal
-        if (rotX < 0)
+        if (rotX > 0)
         {
             mover.SetToRightEngines();
         }
-        if (rotX > 0)
+        if (rotX < 0)
         {
             mover.SetToLeftEngines();
         }
