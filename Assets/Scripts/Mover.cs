@@ -51,7 +51,7 @@ public class Mover : MonoBehaviour
         }
         #endregion
 
-        Speed.text = (Ship.GetComponent<Rigidbody>().velocity.magnitude * 100).ToString("F0") + "KM/H";
+        Speed.text = (Ship.GetComponent<Rigidbody>().velocity.magnitude * 100).ToString("F0") + "KM/M";
 
         ShipAnim.speed = (EnginePower.value-0.24f) * 3f;
     }
@@ -159,9 +159,7 @@ public class Mover : MonoBehaviour
             fire.SetActive(true);
             fire.transform.rotation = Quaternion.Euler(-90, 0, 0);
         }
-        print("Done");
         yield return new WaitForSeconds(0.5f);
-        print("Done2");
         stopAllFlames();
     }
 }
