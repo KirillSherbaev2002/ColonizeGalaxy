@@ -8,9 +8,9 @@ public class CameraFollows : MonoBehaviour
     private float camYPosSmooth;
 
     [SerializeField] private float smallestValueZ;
-    [SerializeField] private float biggestValueZ;
-
     [SerializeField] private float smallestValueY;
+
+    [SerializeField] private float biggestValueZ;
     [SerializeField] private float biggestValueY;
 
     private Mover moverShip;
@@ -35,13 +35,13 @@ public class CameraFollows : MonoBehaviour
         }
         if (moverShip.EnginePower.value > 0.28f)
         {
-            camZPos = biggestValueY;
+            camZPos = biggestValueZ;
             camYPos = biggestValueY +2f - (moverShip.EnginePower.value * 1.56f) - 0.26f;
         }
         if (!(moverShip.EnginePower.value > 0.28f) && !(moverShip.EnginePower.value < 0.24f))
         {
             camZPos = smallestValueZ;
-            camYPos = biggestValueY;
+            camYPos = smallestValueY;
         }
         #endregion
         CamToShip();

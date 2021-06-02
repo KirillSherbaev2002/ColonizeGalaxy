@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DragRotate : MonoBehaviour
 {
@@ -41,10 +39,12 @@ public class DragRotate : MonoBehaviour
         if (rotX > 0)
         {
             mover.SetToRightEngines();
+            mover.SetFlameToCorrectRotation();
         }
         if (rotX < 0)
         {
             mover.SetToLeftEngines();
+            mover.SetFlameToCorrectRotation();
         }
         #endregion
 

@@ -23,7 +23,6 @@ public class BulletInstantiator : MonoBehaviour
             {
                 numberOfEnemies++;
             }
-            print(numberOfEnemies);
         }
         if(numberOfEnemies > 0)
         {

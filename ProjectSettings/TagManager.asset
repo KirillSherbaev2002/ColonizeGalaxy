@@ -8,6 +8,9 @@ TagManager:
   - Correcters
   - MyBullet
   - Enemy
+  - Planet
+  - SpaceShip
+  - Map
   layers:
   - Default
   - TransparentFX

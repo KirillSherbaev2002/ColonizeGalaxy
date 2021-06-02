@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [Header ("Controllers of bullets")]
+
+    private Mover mover;
     public float Speed;
     private float timeSumm;
+
     void Update()
     {
-        GetComponent<Rigidbody>().AddForce(transform.forward* Speed);
+        mover = FindObjectOfType<Mover>();
+        GetComponent<Rigidbody>().AddForce(transform.forward* (Speed + mover.GetComponent<Rigidbody>().velocity.magnitude));
+        print(mover.GetComponent<Rigidbody>().velocity.magnitude);
         Shoot();
-
+        DeathAfter();
     }
 
     void Shoot()
@@ -20,13 +26,13 @@ public class Bullet : MonoBehaviour
 
     private void DeathAfter()
     {
-        if(timeSumm <= 200)
+        if(timeSumm <= 100)
         {
             timeSumm++;
         }
         else
         {
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 }

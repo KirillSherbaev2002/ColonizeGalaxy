@@ -8,6 +8,8 @@ public class Mover : MonoBehaviour
 {
     public Slider EnginePower;
 
+    [Header("Fires of engines")]
+
     public GameObject[] Stoppers;
     public GameObject[] MainFire;
 
@@ -17,13 +19,18 @@ public class Mover : MonoBehaviour
     public GameObject[] ToLeft;
     public GameObject[] ToRight;
 
+    [Header("Rotation controllers and setting")]
+
     public GameObject Ship;
     public GameObject Camera;
 
     public TMP_Text Speed;
-    public Animator ShipAnim;
+
+    public Animator ShipRotationPositive;
 
     [SerializeField] private float camToStarshipRotationX;
+
+    public GameObject Explosion;
 
     public void Start()
     {
@@ -53,7 +60,7 @@ public class Mover : MonoBehaviour
 
         Speed.text = (Ship.GetComponent<Rigidbody>().velocity.magnitude * 100).ToString("F0") + "KM/M";
 
-        ShipAnim.speed = (EnginePower.value-0.24f) * 3f;
+        ShipRotationPositive.speed = (EnginePower.value - 0.24f) * 3f;
     }
 
     #region EngineControllers
@@ -68,7 +75,6 @@ public class Mover : MonoBehaviour
             }
         }
     }
-
 
     #region SetActivityOfEngines
 
@@ -161,5 +167,14 @@ public class Mover : MonoBehaviour
         }
         yield return new WaitForSeconds(0.5f);
         stopAllFlames();
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Planet"))
+        {
+            GetComponent<MeshRenderer>().enabled = false;
+            Instantiate(Explosion, transform.position, transform.rotation);
+        }
     }
 }
