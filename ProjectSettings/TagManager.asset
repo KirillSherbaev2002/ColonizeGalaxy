@@ -11,6 +11,7 @@ TagManager:
   - Planet
   - SpaceShip
   - Map
+  - Ours
   layers:
   - Default
   - TransparentFX

@@ -36,7 +36,7 @@ public class CameraFollows : MonoBehaviour
         if (moverShip.EnginePower.value > 0.28f)
         {
             camZPos = biggestValueZ;
-            camYPos = biggestValueY +2f - (moverShip.EnginePower.value * 1.56f) - 0.26f;
+            camYPos = biggestValueY + 2f - (moverShip.EnginePower.value * 1.56f) - 0.26f;
         }
         if (!(moverShip.EnginePower.value > 0.28f) && !(moverShip.EnginePower.value < 0.24f))
         {

@@ -5,7 +5,8 @@ using UnityEngine;
 public class BulletInstantiator : MonoBehaviour
 {
     private GameObject[] Enemies;
-    public GameObject Shooting;
+    public GameObject ParticleShooting;
+    public GameObject InstantiatorSpot;
     public GameObject Bullet;
     private void Update()
     {
@@ -26,18 +27,19 @@ public class BulletInstantiator : MonoBehaviour
         }
         if(numberOfEnemies > 0)
         {
-            Shooting.SetActive(true);
+            ParticleShooting.SetActive(true);
+
             yield return new WaitForSeconds(2f);
             ShootingBullets();
         }
         if (numberOfEnemies <= 0)
         {
-            Shooting.SetActive(false);
+            ParticleShooting.SetActive(false);
         }
     }
 
     private void ShootingBullets()
     {
-        Instantiate(Bullet, transform.position, transform.rotation);
+        Instantiate(Bullet, InstantiatorSpot.transform.position, InstantiatorSpot.transform.rotation);
     }
 }

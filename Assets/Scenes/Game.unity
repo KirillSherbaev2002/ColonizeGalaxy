@@ -39064,7 +39064,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7118436223541064334}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &809727204
 Light:
@@ -44683,6 +44683,36 @@ Transform:
   - {fileID: 2111315186}
   m_Father: {fileID: 0}
   m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1407835649
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1407835650}
+  m_Layer: 0
+  m_Name: BulletInst
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1407835650
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407835649}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7118436223541064334}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1551122580
 Rigidbody:
@@ -74049,7 +74079,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab499cb46abfdaa458ae11c93ef81b8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Shooting: {fileID: 7116497534108839598}
+  ParticleShooting: {fileID: 7116497534108839598}
+  InstantiatorSpot: {fileID: 1407835649}
   Bullet: {fileID: 2439699325922208840, guid: 2bff440aebb7f4b4495ceacfa4414069, type: 3}
 --- !u!1 &2111315185
 GameObject:
@@ -74315,6 +74346,9 @@ MonoBehaviour:
   - {fileID: 579477330}
   Ship: {fileID: 1478764771328732}
   Camera: {fileID: 645055949133781340}
+  CameraAdditional: {fileID: 129983787737957815, guid: 5e370595f32cfd64a9c7c89ba7a7854c,
+    type: 3}
+  CameraMoveFromExplotions: 50
   Speed: {fileID: 1756635946}
   ShipRotationPositive: {fileID: 701141463}
   camToStarshipRotationX: 155.66
@@ -74562,7 +74596,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478764771328732}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 5.87, y: 0.39, z: 7.57}
+  m_LocalPosition: {x: 5.87, y: 0.39, z: -12.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7122085619830256640}
@@ -75264,7 +75298,7 @@ GameObject:
   - component: {fileID: 645055949133781342}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81196,9 +81230,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7116497534108839598}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.04, z: 0.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1407835650}
   - {fileID: 809727203}
   m_Father: {fileID: 2065631873}
   m_RootOrder: 0

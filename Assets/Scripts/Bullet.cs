@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
@@ -10,18 +8,15 @@ public class Bullet : MonoBehaviour
     public float Speed;
     private float timeSumm;
 
-    void Update()
+    void Start()
     {
         mover = FindObjectOfType<Mover>();
-        GetComponent<Rigidbody>().AddForce(transform.forward* (Speed + mover.GetComponent<Rigidbody>().velocity.magnitude));
-        print(mover.GetComponent<Rigidbody>().velocity.magnitude);
-        Shoot();
-        DeathAfter();
+        GetComponent<Rigidbody>().velocity = transform.forward* (Speed + mover.GetComponent<Rigidbody>().velocity.magnitude);
     }
 
-    void Shoot()
+    private void Update()
     {
-        GetComponent<Rigidbody>().AddForce(transform.forward * Speed);
+        DeathAfter();
     }
 
     private void DeathAfter()
