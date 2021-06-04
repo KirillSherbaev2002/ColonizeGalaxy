@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class StarConnectors : MonoBehaviour
@@ -12,6 +11,7 @@ public class StarConnectors : MonoBehaviour
     private void Awake()
     {
         OurStars = GameObject.FindGameObjectsWithTag("Ours");
+        lineRenderer[0].SetPosition(Random.Range(0, OurStars.Length), OurStars[0].transform.position);
         foreach (LineRenderer line in lineRenderer)
         {
             // set the color of the line
@@ -31,7 +31,7 @@ public class StarConnectors : MonoBehaviour
     IEnumerator SetConnections()
     {
         yield return new WaitForSeconds(TimeWaitBeforeNewConnection);
+        //getting and setting V3 star from which to which
         lineRenderer[0].SetPosition(Random.Range(0, OurStars.Length), OurStars[Random.Range(0, OurStars.Length)].transform.position);
-        lineRenderer[1].SetPosition(Random.Range(0, OurStars.Length), OurStars[Random.Range(0, OurStars.Length)].transform.position);
     }
 }

@@ -8,7 +8,7 @@ public class EnemyShip : MonoBehaviour
 
     private void DestroyItself()
     {
-        gameObject.SetActive(false);
+        Destroy(gameObject);
         Instantiate(explosion, transform.position, transform.rotation);
         Instantiate(explosion, transform.position, transform.rotation);
         print("DestroyItself");

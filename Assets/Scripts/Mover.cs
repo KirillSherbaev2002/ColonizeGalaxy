@@ -177,12 +177,8 @@ public class Mover : MonoBehaviour
         if(collision.gameObject.CompareTag("Planet"))
         {
             Instantiate(Explosion, transform.position, transform.rotation);
-            if(Ship.GetComponent<Rigidbody>().velocity.z < 0)
-            {
-                CameraMoveFromExplotions = -CameraMoveFromExplotions;
-            }
 
-            Instantiate(CameraAdditional, new Vector3(transform.position.x, transform.position.y, transform.position.z + CameraMoveFromExplotions), Quaternion.Euler(0, 0, 0));
+            //Instantiate(CameraAdditional, new Vector3(transform.position.x, transform.position.y, transform.position.z + CameraMoveFromExplotions), Quaternion.Euler(0, 0, 0));
             Destroy(gameObject);
         }
     }
