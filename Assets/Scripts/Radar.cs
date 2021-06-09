@@ -36,7 +36,6 @@ public class Radar : MonoBehaviour
             try
             {
                 AngleBetweenGoals[i] = Vector3.SignedAngle(-SpaceShip.transform.up, Enemies[i].transform.position - SpaceShip.transform.position, -Vector3.up);
-                print(AngleBetweenGoals[i]);
             }
             catch
             {

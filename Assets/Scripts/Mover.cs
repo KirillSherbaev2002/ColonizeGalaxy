@@ -35,6 +35,10 @@ public class Mover : MonoBehaviour
 
     public GameObject Explosion;
 
+    public ParticleSystemRenderer SpeedMarkers;
+    Gradient colorOfSpeedGradient = new Gradient();
+    [SerializeField] private float SpeedOfOneHunderedPercent;
+
     public void Start()
     {
         OnSliderValueChanged();
@@ -64,6 +68,8 @@ public class Mover : MonoBehaviour
         Speed.text = (Ship.GetComponent<Rigidbody>().velocity.magnitude * 100).ToString("F0") + "KM/M";
 
         ShipRotationPositive.speed = (EnginePower.value - 0.24f) * 3f;
+
+        CheckSpeed();
     }
 
     #region EngineControllers
@@ -180,6 +186,19 @@ public class Mover : MonoBehaviour
 
             //Instantiate(CameraAdditional, new Vector3(transform.position.x, transform.position.y, transform.position.z + CameraMoveFromExplotions), Quaternion.Euler(0, 0, 0));
             Destroy(gameObject);
+        }
+    }
+
+    private void CheckSpeed()
+    {
+        SpeedMarkers.lengthScale = GetComponent<Rigidbody>().velocity.magnitude * 20 / SpeedOfOneHunderedPercent;
+        print(GetComponent<Rigidbody>().velocity.magnitude);
+        print(SpeedOfOneHunderedPercent);
+        print(SpeedMarkers.lengthScale);
+
+        if (SpeedMarkers.lengthScale > 20)
+        {
+            SpeedMarkers.lengthScale = 20;
         }
     }
 }
