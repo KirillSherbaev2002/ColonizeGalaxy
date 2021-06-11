@@ -39,6 +39,9 @@ public class Mover : MonoBehaviour
     Gradient colorOfSpeedGradient = new Gradient();
     [SerializeField] private float SpeedOfOneHunderedPercent;
 
+    [Header("Main Engines")]
+    public ParticleSystem[] MainEngines;
+
     public void Start()
     {
         OnSliderValueChanged();
@@ -199,6 +202,14 @@ public class Mover : MonoBehaviour
         if (SpeedMarkers.lengthScale > 20)
         {
             SpeedMarkers.lengthScale = 20;
+        }
+    }
+
+    public void SetEnginesToCorrectRotation()
+    {
+        foreach(ParticleSystem engines in MainEngines)
+        {
+            engines.startRotation3D = new Vector3(transform.rotation.x-90, 0, 0);
         }
     }
 }
