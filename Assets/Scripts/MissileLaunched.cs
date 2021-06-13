@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class MissileLaunched : MonoBehaviour
 {
@@ -15,7 +14,6 @@ public class MissileLaunched : MonoBehaviour
 
     void Start()
     {
-        //Set
         mover = FindObjectOfType<Mover>();
         GetComponent<Rigidbody>().velocity = -mover.transform.up
             * (Speed + mover.GetComponent<Rigidbody>().velocity.magnitude);

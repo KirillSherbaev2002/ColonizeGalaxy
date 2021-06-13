@@ -2,7 +2,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System;
 
 public class Mover : MonoBehaviour
 {
@@ -32,15 +31,16 @@ public class Mover : MonoBehaviour
     public GameObject Explosion;
 
     public ParticleSystemRenderer SpeedMarkers;
-    [SerializeField] private float SpeedOfOneHunderedPercent;
+    [SerializeField] private float speedOfOneHunderedPercent;
 
     [Header("Main Engines")]
     public ParticleSystem[] MainEngines;
+    [SerializeField] private float startSliderValue;
 
     public void Start()
     {
         OnSliderValueChanged();
-        EnginePower.value = 0.25f;
+        EnginePower.value = startSliderValue;
     }
 
     public void OnSliderValueChanged()
@@ -178,7 +178,7 @@ public class Mover : MonoBehaviour
 
     private void CheckSpeed()
     {
-        SpeedMarkers.lengthScale = GetComponent<Rigidbody>().velocity.magnitude * 20 / SpeedOfOneHunderedPercent;
+        SpeedMarkers.lengthScale = GetComponent<Rigidbody>().velocity.magnitude * 20 / speedOfOneHunderedPercent;
 
         if (SpeedMarkers.lengthScale > 20)
         {

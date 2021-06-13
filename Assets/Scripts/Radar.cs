@@ -1,15 +1,22 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Radar : MonoBehaviour
 {
     [Header("RadarProperties")]
     public Image[] RadarParts = new Image[15];
     public GameObject[] Enemies;
+    public GameObject[] EnemiesBuilding;
+
+    public TMP_Text DistanceToTheEnemy;
     public GameObject SpaceShip;
 
     [SerializeField] private Color ActiveColor;
     [SerializeField] private Color DeactiveColor;
+
+    public TMP_Text NumberOfEnemyShips;
+    public TMP_Text NumberOfEnemyBuildings;
 
     [SerializeField] private float[] AngleBetweenGoals;
 
@@ -27,6 +34,9 @@ public class Radar : MonoBehaviour
     private void SearchForTheEnemies()
     {
         Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        EnemiesBuilding = GameObject.FindGameObjectsWithTag("EnemyBuilding");
+        NumberOfEnemyShips.text = Enemies.Length.ToString();
+        NumberOfEnemyBuildings.text = EnemiesBuilding.Length.ToString();
     }
 
     private void GettingTheDifference()
@@ -36,6 +46,18 @@ public class Radar : MonoBehaviour
             try
             {
                 AngleBetweenGoals[i] = Vector3.SignedAngle(-SpaceShip.transform.up, Enemies[i].transform.position - SpaceShip.transform.position, -Vector3.up);
+            }
+            catch
+            {
+                SearchForTheEnemies();
+            }
+        }
+
+        for (int i = 0; i < EnemiesBuilding.Length; i++)
+        {
+            try
+            {
+                AngleBetweenGoals[i] += Vector3.SignedAngle(-SpaceShip.transform.up, EnemiesBuilding[i].transform.position - SpaceShip.transform.position, -Vector3.up);
             }
             catch
             {
@@ -65,18 +87,26 @@ public class Radar : MonoBehaviour
             {
                 if (Enemies.Length >= i && Enemies[i].activeSelf == true)
                 {
-                    if (AngleBetweenGoals[i] < 5 && AngleBetweenGoals[i] > -5)
+                    if (AngleBetweenGoals[i] < 15 && AngleBetweenGoals[i] > -15)
                     {
-                        RadarParts[7].color = ActiveColor;
-                    }
+                        if (AngleBetweenGoals[i] < 5 && AngleBetweenGoals[i] > -5)
+                        {
+                            RadarParts[7].color = ActiveColor;
+                        }
 
-                    if (AngleBetweenGoals[i] < 15 && AngleBetweenGoals[i] > 5)
-                    {
-                        RadarParts[6].color = ActiveColor;
+                        if (AngleBetweenGoals[i] < 15 && AngleBetweenGoals[i] > 5)
+                        {
+                            RadarParts[6].color = ActiveColor;
+                        }
+                        if (AngleBetweenGoals[i] < -5 && AngleBetweenGoals[i] > -15)
+                        {
+                            RadarParts[8].color = ActiveColor;
+                        }
+                        DistanceToTheEnemy.text = Vector3.Distance(Enemies[i].transform.position, SpaceShip.transform.position).ToString("N0") + "Km";
                     }
-                    if (AngleBetweenGoals[i] < -5 && AngleBetweenGoals[i] > -15)
+                    else
                     {
-                        RadarParts[8].color = ActiveColor;
+                        DistanceToTheEnemy.text = "Unknown km";
                     }
 
                     if (AngleBetweenGoals[i] < 25 && AngleBetweenGoals[i] > 15)

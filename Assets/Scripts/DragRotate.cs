@@ -25,7 +25,6 @@ public class DragRotate : MonoBehaviour
     {
         //On touch and move in vertical change Y
         rotY = PlusOrMinus * Input.GetAxis("Mouse Y") * Sensivity * Mathf.Deg2Rad;
-        print(Input.GetAxis("Mouse Y"));
         #region ControllersVertical
         if (rotY > 0)
         {

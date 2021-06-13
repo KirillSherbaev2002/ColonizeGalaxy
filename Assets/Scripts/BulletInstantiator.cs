@@ -5,13 +5,14 @@ public class BulletInstantiator : MonoBehaviour
 {
     [Header ("Properties for instantiating bullets")]
     private GameObject[] Enemies;
+
     public GameObject ParticleShooting;
     public GameObject InstantiatorSpot;
     public GameObject Bullet;
 
     public Animator GunMover;
 
-    private void Update()
+    private void FixedUpdate()
     {
         StartCoroutine(SearchForTheEnemies());
     }

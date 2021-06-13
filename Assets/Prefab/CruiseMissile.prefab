@@ -19664,7 +19664,7 @@ GameObject:
   - component: {fileID: 7559464990541750345}
   - component: {fileID: 2844391565133515133}
   - component: {fileID: 8630509833943927498}
-  - component: {fileID: 6551978557309315730}
+  - component: {fileID: 5129917689186193519}
   m_Layer: 0
   m_Name: CruiseMissile
   m_TagString: Rocket
@@ -19723,8 +19723,8 @@ MonoBehaviour:
   Speed: 100
   AxelerationOverFrame: 1
   Explosion: {fileID: 100014, guid: 4be461bdf6702f64298fb518ce64cc1d, type: 3}
---- !u!136 &6551978557309315730
-CapsuleCollider:
+--- !u!65 &5129917689186193519
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -19733,10 +19733,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.28875157
-  m_Height: 10.4454
-  m_Direction: 2
-  m_Center: {x: -0.009363839, y: -0.04850402, z: 5.833574}
+  serializedVersion: 2
+  m_Size: {x: 41.04502, y: 38.84049, z: 1.6829995}
+  m_Center: {x: 2.3252583, y: -2.0616007, z: 27.517048}
 --- !u!1 &7559464990663446441
 GameObject:
   m_ObjectHideFlags: 0

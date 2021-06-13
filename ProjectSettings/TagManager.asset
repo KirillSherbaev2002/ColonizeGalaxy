@@ -15,6 +15,7 @@ TagManager:
   - Rocket
   - FxTemporaire
   - ExplosionOfRocket
+  - EnemyBuilding
   layers:
   - Default
   - TransparentFX
