@@ -22,10 +22,6 @@ public class Mover : MonoBehaviour
     [Header("Rotation controllers and setting")]
 
     public GameObject Ship;
-    public GameObject Camera;
-
-    public GameObject CameraAdditional;
-    [SerializeField] private float CameraMoveFromExplotions;
 
     public TMP_Text Speed;
 
@@ -36,7 +32,6 @@ public class Mover : MonoBehaviour
     public GameObject Explosion;
 
     public ParticleSystemRenderer SpeedMarkers;
-    Gradient colorOfSpeedGradient = new Gradient();
     [SerializeField] private float SpeedOfOneHunderedPercent;
 
     [Header("Main Engines")]
@@ -68,7 +63,7 @@ public class Mover : MonoBehaviour
         }
         #endregion
 
-        Speed.text = (Ship.GetComponent<Rigidbody>().velocity.magnitude * 100).ToString("F0") + "KM/M";
+        Speed.text = (Ship.GetComponent<Rigidbody>().velocity.magnitude * 100).ToString("N0") + "KM/M";
 
         ShipRotationPositive.speed = (EnginePower.value - 0.24f) * 3f;
 
@@ -181,23 +176,9 @@ public class Mover : MonoBehaviour
         stopAllFlames();
     }
 
-    public void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.CompareTag("Planet"))
-        {
-            Instantiate(Explosion, transform.position, transform.rotation);
-
-            //Instantiate(CameraAdditional, new Vector3(transform.position.x, transform.position.y, transform.position.z + CameraMoveFromExplotions), Quaternion.Euler(0, 0, 0));
-            Destroy(gameObject);
-        }
-    }
-
     private void CheckSpeed()
     {
         SpeedMarkers.lengthScale = GetComponent<Rigidbody>().velocity.magnitude * 20 / SpeedOfOneHunderedPercent;
-        print(GetComponent<Rigidbody>().velocity.magnitude);
-        print(SpeedOfOneHunderedPercent);
-        print(SpeedMarkers.lengthScale);
 
         if (SpeedMarkers.lengthScale > 20)
         {

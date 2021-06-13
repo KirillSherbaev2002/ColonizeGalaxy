@@ -2,18 +2,20 @@
 
 public class ExplotionCam : MonoBehaviour
 {
-   private void OnCollisionEnter(Collision collision)
-   {
-       if(collision.collider.CompareTag("Planet"))
-       {
-            Destroy(gameObject);
-       }
-   }
-    private void OnTriggerEnter(Collider other)
+    private Planet planet;
+    [SerializeField] private float camSpeedAfterCollision;
+
+    private void Awake()
     {
-        if (other.CompareTag("Planet"))
-        {
-            Destroy(gameObject);
-        }
+        planet = FindObjectOfType<Planet>();
+    }
+    private void Update()
+    {
+        //We move cam back to the direction in which spaceship came
+        transform.position += new Vector3(
+            camSpeedAfterCollision * planet.RotationalCenterPlayerLastView.x,
+            camSpeedAfterCollision * planet.RotationalCenterPlayerLastView.y,
+            camSpeedAfterCollision * planet.RotationalCenterPlayerLastView.z
+            );
     }
 }

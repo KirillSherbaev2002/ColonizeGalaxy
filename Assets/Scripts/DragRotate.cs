@@ -5,10 +5,11 @@ public class DragRotate : MonoBehaviour
     [SerializeField] private float Sensivity;
 
     private Mover mover;
+    private CameraFollows camFollows;
 
     public GameObject Ship;
 
-    [SerializeField] private float rotX;
+    public float rotX;
     [SerializeField] private float rotY;
 
     [SerializeField] private int PlusOrMinus;
@@ -16,29 +17,32 @@ public class DragRotate : MonoBehaviour
     private void Awake()
     {
         mover = FindObjectOfType<Mover>();
+        camFollows = FindObjectOfType<CameraFollows>();
     }
 
     [System.Obsolete]
     public void OnMouseDrag()
     {
+        //On touch and move in vertical change Y
         rotY = PlusOrMinus * Input.GetAxis("Mouse Y") * Sensivity * Mathf.Deg2Rad;
         print(Input.GetAxis("Mouse Y"));
         #region ControllersVertical
         if (rotY > 0)
         {
-            mover.SetDownBackEngines();
+            mover.SetUpBackEngines();
             mover.SetFlameToCorrectRotation();
             Ship.transform.Rotate(rotY, 0.0f, 0.0f, Space.Self);
         }
         if (rotY < 0)
         {
-            mover.SetUpBackEngines();
+            mover.SetDownBackEngines();
             mover.SetFlameToCorrectRotation();
             Ship.transform.Rotate(rotY, 0.0f, 0.0f, Space.Self);
         }
         #endregion
 
         #region ControllersHorizontal
+        //On touch and move in Horizontal change X
         rotX = -PlusOrMinus * Input.GetAxis("Mouse X") * Sensivity * Mathf.Deg2Rad;
         if (rotX > 0)
         {
@@ -66,6 +70,7 @@ public class DragRotate : MonoBehaviour
     }
     public void OnMouseDragEnd()
     {
+        //Delete all starship flames 
         if (rotX == 0 && rotY == 0)
         {
             mover.stopAllFlames();

@@ -12,6 +12,9 @@ TagManager:
   - SpaceShip
   - Map
   - Ours
+  - Rocket
+  - FxTemporaire
+  - ExplosionOfRocket
   layers:
   - Default
   - TransparentFX

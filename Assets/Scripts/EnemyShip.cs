@@ -6,6 +6,8 @@ public class EnemyShip : MonoBehaviour
     public GameObject brokenShip;
     public GameObject explosion;
 
+    public GameObject RocketExplotion;
+
     private void DestroyItself()
     {
         Destroy(gameObject);
@@ -17,6 +19,14 @@ public class EnemyShip : MonoBehaviour
     {
         if(other.tag == "MyBullet")
         {
+            DestroyItself();
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Rocket")
+        {
+            Instantiate(RocketExplotion, transform.position, transform.rotation);
             DestroyItself();
         }
     }
