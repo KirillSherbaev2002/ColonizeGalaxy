@@ -7,6 +7,10 @@ public class EnemyShip : MonoBehaviour
 
     public GameObject RocketExplotion;
 
+    [SerializeField] private float speed;
+
+    [SerializeField] private bool NeedsToMove;
+
     private void DestroyItself()
     {
         Destroy(gameObject);
@@ -29,6 +33,14 @@ public class EnemyShip : MonoBehaviour
         {
             DestroyItself();
             print("OnCollisionEntered");
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (NeedsToMove == true)
+        {
+            transform.position += transform.forward * speed * Time.deltaTime;
         }
     }
 }

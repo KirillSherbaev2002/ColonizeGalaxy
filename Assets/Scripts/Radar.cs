@@ -49,20 +49,9 @@ public class Radar : MonoBehaviour
             }
             catch
             {
-                SearchForTheEnemies();
+                print("No objects in 30 degrees");
             }
-        }
-
-        for (int i = 0; i < EnemiesBuilding.Length; i++)
-        {
-            try
-            {
-                AngleBetweenGoals[i] += Vector3.SignedAngle(-SpaceShip.transform.up, EnemiesBuilding[i].transform.position - SpaceShip.transform.position, -Vector3.up);
-            }
-            catch
-            {
-                SearchForTheEnemies();
-            }
+            SearchForTheEnemies();
         }
     }
 
