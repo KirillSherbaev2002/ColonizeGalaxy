@@ -20,22 +20,36 @@ public class Radar : MonoBehaviour
 
     [SerializeField] private float[] AngleBetweenGoals;
 
+    [Header("The end of the game")]
+    public GameObject MainCanvas;
+    public GameObject GameEnd;
+
+    public Timer timer;
+
     private void Awake()
     {
         SearchForTheEnemies();
+
+        timer = FindObjectOfType<Timer>();
     }
 
     private void FixedUpdate()
     {
         GettingTheDifference();
         SetRadar();
+        SearchForTheEnemyBuildings();
+        CheckIfThereIsNoEnemies();
     }
 
     private void SearchForTheEnemies()
     {
         Enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        EnemiesBuilding = GameObject.FindGameObjectsWithTag("EnemyBuilding");
         NumberOfEnemyShips.text = Enemies.Length.ToString();
+    }
+
+    private void SearchForTheEnemyBuildings()
+    {
+        EnemiesBuilding = GameObject.FindGameObjectsWithTag("EnemyBuilding");
         NumberOfEnemyBuildings.text = EnemiesBuilding.Length.ToString();
     }
 
@@ -157,6 +171,16 @@ public class Radar : MonoBehaviour
             {
                 print("No objects found");
             }
+        }
+    }
+
+    private void CheckIfThereIsNoEnemies()
+    {
+        if (EnemiesBuilding.Length == 0 && Enemies.Length == 0)
+        { 
+            MainCanvas.SetActive(false);
+            GameEnd.SetActive(true);
+            timer.MissionPassed();
         }
     }
 }

@@ -18,6 +18,7 @@ public class EnemyShip : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
+        //On collision with bullet or rocket
         if(other.tag == "MyBullet")
         {
             DestroyItself();
@@ -25,6 +26,11 @@ public class EnemyShip : MonoBehaviour
         if (other.tag == "Rocket")
         {
             DestroyItself();
+
+            if (NeedsToMove == true)
+            {
+                Destroy(other.gameObject);
+            }
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -33,6 +39,11 @@ public class EnemyShip : MonoBehaviour
         {
             DestroyItself();
             print("OnCollisionEntered");
+
+            if (NeedsToMove == true)
+            {
+                Destroy(collision.gameObject);
+            }
         }
     }
 
